@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+    game();
+    
+    
+    
+    function game(){
+     
+     var round;
+     var playerscore = 0;
+     var compscore = 0;
+     
+     for (round =0 ;round < 5; round ++){
+         console.log("Round "+ round)
+         playRound();
+         if (round === 4){
+             determineWinner (playerscore,compscore);
+         }
+     }
+    
+    
+     
+      function playerPlay(){
+        let playerSelection =""
+        playerSelection = prompt("Please Enter paper, rock, or scissors","");
+        do{
+            if (playerSelection.toLowerCase() === "paper" || playerSelection.toLowerCase() === "rock" || playerSelection.toLowerCase() === "scissors" ){
+                 
+                 return playerSelection.toLowerCase();
+            } else if (playerSelection !=="paper" || playerSelection !=="rock" || playerSelection !=="scissors" ){
+                console.log("please re-enter.")
+                playerSelection = prompt("Please Enter paper, rock, or scissors","");
+            }
+          }while(playerSelection.toLowerCase() !=="paper" || playerSelection.toLowerCase() !=="rock" || playerSelection.toLowerCase() !=="scissors" )  
+      } 
+    
+    
+    
+      function computerPlay(){
+    
+        let compSelection = Math.floor(Math.random() * 3)+1;
+        if (compSelection == 1){
+            return "paper";
+        } else if (compSelection == 2) {
+            return "rock";
+        } else {
+            return "scissors";
+        }
+
+      }
+
+      function compare (playerselect,compselect){
+         if (playerselect ==='paper' && compselect ==='paper'){
+             
+             console.log("You chose "+playerselect+" and the computer chose "+compselect+" Tie!");
+
+         } 
+         
+         else if (playerselect ==='paper' && compselect ==='rock') {
+            console.log("You chose "+playerselect+" and the computer chose "+compselect+" You won this round!")
+             playerscore ++;
+         } 
+         
+         else if (playerselect ==='paper' && compselect ==='scissors'){
+            console.log("You chose "+playerselect+" and the computer chose "+compselect+" You lost this round!");
+            compscore ++;
+         }
+
+         else if (playerselect ==='rock' && compselect ==='paper'){
+            console.log("You chose "+playerselect+" and the computer chose "+compselect+" You lost this round!");
+            compscore ++;
+
+         } 
+         
+         else if (playerselect ==='rock' && compselect ==='rock') {
+            console.log("You chose "+playerselect+" and the computer chose "+compselect+" Tie!");
+         } 
+         
+         else if (playerselect ==='rock' && compselect ==='scissors'){
+            console.log("You chose "+playerselect+" and the computer chose "+compselect+" You won this round!");
+             playerscore ++;
+         }
+
+         else if (playerselect ==='scissors' && compselect ==='paper'){
+            console.log("You chose "+playerselect+" and the computer chose "+compselect+" You won this round!");
+             playerscore ++;
+         } 
+         
+         else if (playerselect ==='scissors' && compselect ==='rock') {
+            console.log("You chose "+playerselect+" and the computer chose "+compselect+" You lost this round!");
+            compscore ++;
+         } 
+         
+         else if (playerselect ==='scissors' && compselect ==='scissors'){
+            console.log("You chose "+playerselect+" and the computer chose "+compselect+" Tie!");
+         }
+
+      }
+
+       
+      
+    
+        function determineWinner(pscore,cscore){
+            
+            if (pscore > cscore){
+                return console.log("You win the game!");
+            }
+            
+            else if (pscore === cscore) {
+                return console.log("A tied Game!");  
+            }
+
+            else if (pscore < cscore) {
+                return console.log("Computer wins the game!");  
+            }
+        }
+
+
+        function playRound(){
+            let playerSel = playerPlay()
+            let computerSel = computerPlay()
+            compare(playerSel,computerSel)
+        }
+
+    }
+    
+    
+    
+    
+    
+    
+
+    </script>
+    
+    <meta charset="UTF-8">
+    <head>
+    </head>
+
+
+
+
+</html>
